@@ -1,4 +1,4 @@
-# Heimdall: The App That Hears Color
+# Heimdall: Sing Colour
 
 Welcome to **Heimdall**, where your world's colors become the symphony of your day! 🌈🎶
 
