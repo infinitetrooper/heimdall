@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var cameraManager = CameraManager()
     @State private var isSoundPlaying = true
+    @State private var notePlayer = NotePlayer()
+    @State private var isPlaying = false
 
     var body: some View {
         VStack {
@@ -36,13 +38,43 @@ struct ContentView: View {
                         .padding()
                 }
             }
-            Button("Capture Image") {
+            Button("Capture and Play") {
                 cameraManager.captureImage { image in
                     if let image = image {
-                        // Process the image to get the notes
-                        // Play the notes sequence
+                        processAndPlayImage(image)
                     }
                 }
+            }
+            
+            if isPlaying {
+                Text("Playing...")
+            } else {
+                Text("Ready")
+            }
+        }
+    }
+    
+    private func processAndPlayImage(_ image: UIImage) {
+        let colors = getSegmentedColors(from: image)
+        let notes = colors.map(mapColorToNote)
+
+        playNotesSequence(notes)
+    }
+    
+    private func playNotesSequence(_ notes: [Float]) {
+        isPlaying = true
+
+        // This is a simple approach to play notes one after another.
+        // For more accurate timing, you might need a more sophisticated approach.
+        DispatchQueue.global(qos: .userInitiated).async {
+            for note in notes {
+                DispatchQueue.main.async {
+                    self.notePlayer.play(noteFrequency: note, duration: 0.5)
+                }
+                sleep(1) // Wait for the note to finish playing
+            }
+            DispatchQueue.main.async {
+                self.isPlaying = false
             }
         }
     }

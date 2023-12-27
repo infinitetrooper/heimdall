@@ -32,6 +32,10 @@ class CameraManager: NSObject, ObservableObject {
                 captureSession.addInput(videoDeviceInput)
                 self.videoDeviceInput = videoDeviceInput
             }
+            
+            if captureSession.canAddOutput(photoOutput) {
+                captureSession.addOutput(photoOutput)
+            }
         } catch {
             print("Unable to access camera: \(error)")
             return
