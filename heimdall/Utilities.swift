@@ -28,26 +28,29 @@ extension UIImage {
     }
 }
 
-func getSegmentedColors(from image: UIImage) -> [UIColor] {
+func getSegmentedColors(from image: UIImage, gridRows: Int, gridColumns: Int) -> [UIColor] {
     let imageSize = image.size
-    let segmentSize = CGSize(width: imageSize.width, height: imageSize.height / 8)
+    let segmentSize = CGSize(width: imageSize.width / CGFloat(gridColumns), height: imageSize.height / CGFloat(gridRows))
 
     var colors: [UIColor] = []
 
-    for i in 0..<8 {
-        let segmentOrigin = CGPoint(x: 0, y: CGFloat(i) * segmentSize.height)
-        let segmentRect = CGRect(origin: segmentOrigin, size: segmentSize)
-        
-        if let averageColor = image.averageColor(for: segmentRect) {
-            colors.append(averageColor)
+    for row in 0..<gridRows {
+        for column in 0..<gridColumns {
+            let segmentOrigin = CGPoint(x: CGFloat(column) * segmentSize.width, y: CGFloat(row) * segmentSize.height)
+            let segmentRect = CGRect(origin: segmentOrigin, size: segmentSize)
+            
+            if let averageColor = image.averageColor(for: segmentRect) {
+                colors.append(averageColor)
+            }
         }
     }
 
     return colors
 }
 
+
 extension UIColor {
-    func colorTemperature() -> Float {
+    func normalizedColorTemperature() -> Float {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -55,15 +58,22 @@ extension UIColor {
 
         self.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 
-        // Simple metric: higher red and lower blue indicate warmth
-        return Float(red - blue)
+        // Assuming red represents warmth and blue represents coldness
+        // Adjust these factors to change the sensitivity to color components
+        let warmth = red
+        let coldness = blue
+
+        // Normalize the temperature between 0 and 1
+        let normalizedTemp = (warmth - coldness + 1) / 2
+        return Float(normalizedTemp)
     }
 }
 
 
 func mapColorToNote(_ color: UIColor) -> Float {
-    let temperature = color.colorTemperature()
-    let index = max(0, min(noteFrequencies.count - 1, Int(temperature * Float(noteFrequencies.count))))
+    let normalizedTemp = color.normalizedColorTemperature()
+    let index = Int(normalizedTemp * Float(noteFrequencies.count - 1))
+    print(normalizedTemp, index)
     return Float(noteFrequencies[index])
 }
 

@@ -55,29 +55,29 @@ struct ContentView: View {
     }
     
     private func processAndPlayImage(_ image: UIImage) {
-        let colors = getSegmentedColors(from: image)
-        let notes = colors.map(mapColorToNote)
+        let segmentedColors = getSegmentedColors(from: image, gridRows: 4, gridColumns: 4)
+        let notes = segmentedColors.map(mapColorToNote)
 
         playNotesSequence(notes)
     }
     
-    private func playNotesSequence(_ notes: [Float]) {
+    private func playNotesSequence(_ notes: [Float], noteDuration: TimeInterval = 0.25) {
         isPlaying = true
 
-        // This is a simple approach to play notes one after another.
-        // For more accurate timing, you might need a more sophisticated approach.
         DispatchQueue.global(qos: .userInitiated).async {
             for note in notes {
-                DispatchQueue.main.async {
-                    self.notePlayer.play(noteFrequency: note, duration: 0.5)
+                DispatchQueue.main.sync {
+                    self.notePlayer.play(noteFrequency: note, duration: noteDuration)
                 }
-                sleep(1) // Wait for the note to finish playing
+                // Wait for the note to finish playing, plus a small gap between notes
+                Thread.sleep(forTimeInterval: noteDuration + 0.1)
             }
             DispatchQueue.main.async {
                 self.isPlaying = false
             }
         }
     }
+
 }
 
 
