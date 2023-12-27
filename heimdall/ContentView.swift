@@ -10,8 +10,10 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var cameraManager = CameraManager()
     @State private var isSoundPlaying = true
-    @State private var notePlayer = NotePlayer()
     @State private var isPlaying = false
+    private var notePlayer = NotePlayer()
+    @State private var noteQueue: [Double] = []
+    @State private var currentNoteIndex = 0
 
     var body: some View {
         VStack {
@@ -61,20 +63,25 @@ struct ContentView: View {
         playNotesSequence(notes)
     }
     
-    private func playNotesSequence(_ notes: [Float], noteDuration: TimeInterval = 0.25) {
-        isPlaying = true
+    private func playNotesSequence(_ notes: [Float], noteDuration: TimeInterval = 1) {
+        // Convert each Float in `notes` to Double
+        noteQueue = notes.map { Double($0) }
+        currentNoteIndex = 0
+        playNextNote(noteDuration: noteDuration)
+    }
+    
+    private func playNextNote(noteDuration: TimeInterval) {
+        guard currentNoteIndex < noteQueue.count else { return }
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            for note in notes {
-                DispatchQueue.main.sync {
-                    self.notePlayer.play(noteFrequency: note, duration: noteDuration)
-                }
-                // Wait for the note to finish playing, plus a small gap between notes
-                Thread.sleep(forTimeInterval: noteDuration + 0.1)
-            }
-            DispatchQueue.main.async {
-                self.isPlaying = false
-            }
+        let noteFrequency = noteQueue[currentNoteIndex]
+        notePlayer.play(noteFrequency: noteFrequency, duration: noteDuration)
+
+        currentNoteIndex += 1
+
+        // Schedule the next note to play after the current one finishes
+        let waitTime = noteDuration + TimeInterval(notePlayer.envelope.releaseDuration)
+        DispatchQueue.main.asyncAfter(deadline: .now() + waitTime) {
+            self.playNextNote(noteDuration: noteDuration)
         }
     }
 

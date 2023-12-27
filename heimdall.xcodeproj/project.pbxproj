@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47149DE42B3C983E005FF5C7 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 47149DE32B3C983E005FF5C7 /* AudioKit */; };
+		47149DE72B3C999D005FF5C7 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 47149DE62B3C999D005FF5C7 /* SoundpipeAudioKit */; };
 		47A7681C2B3C599500921F01 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A7681B2B3C599500921F01 /* Utilities.swift */; };
 		47A7681E2B3C5F7700921F01 /* NotePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A7681D2B3C5F7700921F01 /* NotePlayer.swift */; };
 		47C742572B3C0FAD00EE5AD5 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C742562B3C0FAD00EE5AD5 /* CameraPreviewView.swift */; };
@@ -65,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47149DE72B3C999D005FF5C7 /* SoundpipeAudioKit in Frameworks */,
+				47149DE42B3C983E005FF5C7 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +169,10 @@
 			dependencies = (
 			);
 			name = heimdall;
+			packageProductDependencies = (
+				47149DE32B3C983E005FF5C7 /* AudioKit */,
+				47149DE62B3C999D005FF5C7 /* SoundpipeAudioKit */,
+			);
 			productName = heimdall;
 			productReference = 47DE6C1A2B3C03F600F7D61F /* heimdall.app */;
 			productType = "com.apple.product-type.application";
@@ -237,6 +245,10 @@
 				Base,
 			);
 			mainGroup = 47DE6C112B3C03F600F7D61F;
+			packageReferences = (
+				47149DE22B3C983E005FF5C7 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				47149DE52B3C999D005FF5C7 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */,
+			);
 			productRefGroup = 47DE6C1B2B3C03F600F7D61F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -647,6 +659,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		47149DE22B3C983E005FF5C7 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.2;
+			};
+		};
+		47149DE52B3C999D005FF5C7 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/SoundpipeAudioKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		47149DE32B3C983E005FF5C7 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47149DE22B3C983E005FF5C7 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+		47149DE62B3C999D005FF5C7 /* SoundpipeAudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47149DE52B3C999D005FF5C7 /* XCRemoteSwiftPackageReference "SoundpipeAudioKit" */;
+			productName = SoundpipeAudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 47DE6C122B3C03F600F7D61F /* Project object */;
 }
