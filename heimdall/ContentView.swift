@@ -54,6 +54,11 @@ struct ContentView: View {
                 Text("Ready")
             }
         }
+        
+        .onAppear() {
+            cameraManager.stopSound()
+            isSoundPlaying = false
+        }
     }
     
     private func processAndPlayImage(_ image: UIImage) {
