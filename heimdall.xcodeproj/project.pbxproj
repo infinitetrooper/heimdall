@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		47C742572B3C0FAD00EE5AD5 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C742562B3C0FAD00EE5AD5 /* CameraPreviewView.swift */; };
 		47C742592B3C144100EE5AD5 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C742582B3C144100EE5AD5 /* SoundManager.swift */; };
+		47C7425B2B3C51A000EE5AD5 /* Variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C7425A2B3C51A000EE5AD5 /* Variables.swift */; };
 		47DE6C1E2B3C03F600F7D61F /* heimdallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE6C1D2B3C03F600F7D61F /* heimdallApp.swift */; };
 		47DE6C202B3C03F600F7D61F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE6C1F2B3C03F600F7D61F /* ContentView.swift */; };
 		47DE6C222B3C03F700F7D61F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47DE6C212B3C03F700F7D61F /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		47C742562B3C0FAD00EE5AD5 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
 		47C742582B3C144100EE5AD5 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		47C7425A2B3C51A000EE5AD5 /* Variables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Variables.swift; sourceTree = "<group>"; };
 		47DE6C1A2B3C03F600F7D61F /* heimdall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heimdall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47DE6C1D2B3C03F600F7D61F /* heimdallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = heimdallApp.swift; sourceTree = "<group>"; };
 		47DE6C1F2B3C03F600F7D61F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				47DE6C1D2B3C03F600F7D61F /* heimdallApp.swift */,
 				47DE6C482B3C071200F7D61F /* CameraManager.swift */,
+				47C7425A2B3C51A000EE5AD5 /* Variables.swift */,
 				47C742582B3C144100EE5AD5 /* SoundManager.swift */,
 				47C742562B3C0FAD00EE5AD5 /* CameraPreviewView.swift */,
 				47DE6C4A2B3C077F00F7D61F /* CameraView.swift */,
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47DE6C202B3C03F600F7D61F /* ContentView.swift in Sources */,
+				47C7425B2B3C51A000EE5AD5 /* Variables.swift in Sources */,
 				47DE6C492B3C071200F7D61F /* CameraManager.swift in Sources */,
 				47C742572B3C0FAD00EE5AD5 /* CameraPreviewView.swift in Sources */,
 				47DE6C1E2B3C03F600F7D61F /* heimdallApp.swift in Sources */,

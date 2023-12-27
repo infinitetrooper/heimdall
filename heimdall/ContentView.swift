@@ -36,6 +36,14 @@ struct ContentView: View {
                         .padding()
                 }
             }
+            Button("Capture Image") {
+                cameraManager.captureImage { image in
+                    if let image = image {
+                        // Process the image to get the notes
+                        // Play the notes sequence
+                    }
+                }
+            }
         }
     }
 }

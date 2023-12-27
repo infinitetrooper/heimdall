@@ -1,21 +1,18 @@
 import AVFoundation
 import Combine
+import UIKit
 
 class CameraManager: NSObject, ObservableObject {
     private let captureSession = AVCaptureSession()
     private var videoDeviceInput: AVCaptureDeviceInput?
+    private var photoOutput = AVCapturePhotoOutput()
     @Published var previewLayer: AVCaptureVideoPreviewLayer?
     @Published var currentISO: Float = 0.0
     private var isoUpdateTimer: Timer?
     private var soundManager = SoundManager()
-    let noteFrequencies = [261.63, // Sa (C)
-                          293.66, // Re (D)
-                          329.63, // Ga (E)
-                          349.23, // Ma (F)
-                          392.00, // Pa (G)
-                          440.00, // Dha (A)
-                          493.88, // Ni (B)
-                          523.25] // Sa (C one octave higher)
+    
+    typealias ImageCaptureCompletion = (UIImage?) -> Void
+    private var imageCaptureCompletion: ImageCaptureCompletion?
 
 
     override init() {
@@ -45,6 +42,12 @@ class CameraManager: NSObject, ObservableObject {
         self.previewLayer = newPreviewLayer
 
         captureSession.startRunning()
+    }
+    
+    func captureImage(completion: @escaping ImageCaptureCompletion) {
+        self.imageCaptureCompletion = completion
+        let settings = AVCapturePhotoSettings()
+        photoOutput.capturePhoto(with: settings, delegate: self)
     }
     
     private func updateCurrentISO() {
@@ -87,5 +90,18 @@ class CameraManager: NSObject, ObservableObject {
 
     deinit {
         isoUpdateTimer?.invalidate()
+    }
+}
+
+extension CameraManager: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        if let imageData = photo.fileDataRepresentation() {
+            let image = UIImage(data: imageData)
+            imageCaptureCompletion?(image)
+        } else {
+            imageCaptureCompletion?(nil)
+        }
+        // Reset the completion handler
+        imageCaptureCompletion = nil
     }
 }
