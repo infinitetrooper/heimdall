@@ -1,30 +1,19 @@
 import AudioKit
 import AVFoundation
-import SoundpipeAudioKit
 
 class NotePlayer {
     var engine: AudioEngine
-    var oscillator: Oscillator
-    var envelope: AmplitudeEnvelope
-    
-    private var isPlaying: Bool = false
+    var sampler: AppleSampler
 
     init() {
-        // Initialize the Audio Engine and components
         engine = AudioEngine()
-        oscillator = Oscillator()
-        envelope = AmplitudeEnvelope(oscillator)
-        
-        // Configure the envelope
-        envelope.attackDuration = 0.5  // Fast attack
-        envelope.decayDuration = 0.25    // Decay
-        envelope.sustainLevel = 0.5     // Sustain level
-        envelope.releaseDuration = 0.25  // Slightly longer release
+        sampler = AppleSampler()
 
-        // Connect the envelope to the engine's output
-        engine.output = envelope
+        // Load the specific SFZ file
+        loadSFZFile(named: "TX LoTine81z.sfz")
 
-        // Start the engine
+        engine.output = sampler
+
         do {
             try engine.start()
         } catch {
@@ -32,28 +21,37 @@ class NotePlayer {
         }
     }
 
-    func play(noteFrequency: Double, duration: TimeInterval) {
-        guard !isPlaying else { return }
-        
-        isPlaying = true
-        oscillator.frequency = AUValue(noteFrequency)
-        oscillator.start()
-        envelope.start()
+    private func loadSFZFile(named fileName: String) {
+        guard let filePath = Bundle.main.path(forResource: fileName, ofType: nil, inDirectory: "heimdall/sounds/sfz") else {
+            print("Failed to find \(fileName) in bundle.")
+            return
+        }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-            self.envelope.stop()
+        do {
+            try sampler.loadPath(filePath)
+        } catch {
+            print("Failed to load the SFZ file: \(error)")
+        }
+    }
 
-            let releaseDuration = TimeInterval(self.envelope.releaseDuration)
-            DispatchQueue.main.asyncAfter(deadline: .now() + releaseDuration) {
-                self.oscillator.stop()
-                self.isPlaying = false
+    func playNotesSequence(_ notes: [MIDINoteNumber], noteDuration: TimeInterval) {
+        for (index, note) in notes.enumerated() {
+            let delay = noteDuration * Double(index)
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                self.play(note, duration: noteDuration)
+                print(note)
             }
         }
     }
 
+    private func play(_ note: MIDINoteNumber, duration: TimeInterval) {
+        sampler.play(noteNumber: note, velocity: 127, channel: 0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
+            self.sampler.stop(noteNumber: note)
+        }
+    }
 
     deinit {
-        // Stop the engine when the note player is deinitialized
         do {
             try engine.stop()
         } catch {

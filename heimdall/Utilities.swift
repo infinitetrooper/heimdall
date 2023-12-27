@@ -1,4 +1,5 @@
 import UIKit
+import AudioKit
 
 extension UIImage {
     func averageColor(for segment: CGRect) -> UIColor? {
@@ -70,10 +71,15 @@ extension UIColor {
 }
 
 
-func mapColorToNote(_ color: UIColor) -> Float {
-    let normalizedTemp = color.normalizedColorTemperature()
-    let index = Int(normalizedTemp * Float(noteFrequencies.count - 1))
-    print(normalizedTemp, index)
-    return Float(noteFrequencies[index])
+func mapColorToNote(_ color: UIColor) -> MIDINoteNumber {
+    // Assuming color values are normalized between 0 and 1
+    let normalizedValue = color.normalizedColorTemperature() // Implement this method to get a value between 0 and 1 from the color
+
+    // Map the normalized value to the MIDI note range
+    // Example: C3 (MIDI note number 48) to C4 (MIDI note number 60)
+    let midiNoteRange = (minMIDINote: MIDINoteNumber(0), maxMIDINote: MIDINoteNumber(127))
+    let noteNumber = midiNoteRange.minMIDINote + MIDINoteNumber(normalizedValue * Float(midiNoteRange.maxMIDINote - midiNoteRange.minMIDINote))
+    return noteNumber
 }
+
 

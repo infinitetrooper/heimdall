@@ -62,34 +62,11 @@ struct ContentView: View {
     }
     
     private func processAndPlayImage(_ image: UIImage) {
-        let segmentedColors = getSegmentedColors(from: image, gridRows: 4, gridColumns: 4)
+        let segmentedColors = getSegmentedColors(from: image, gridRows: 10, gridColumns: 10)
         let notes = segmentedColors.map(mapColorToNote)
 
-        playNotesSequence(notes)
+        notePlayer.playNotesSequence(notes, noteDuration: 0.25)
     }
-    
-    private func playNotesSequence(_ notes: [Float], noteDuration: TimeInterval = 1) {
-        // Convert each Float in `notes` to Double
-        noteQueue = notes.map { Double($0) }
-        currentNoteIndex = 0
-        playNextNote(noteDuration: noteDuration)
-    }
-    
-    private func playNextNote(noteDuration: TimeInterval) {
-        guard currentNoteIndex < noteQueue.count else { return }
-
-        let noteFrequency = noteQueue[currentNoteIndex]
-        notePlayer.play(noteFrequency: noteFrequency, duration: noteDuration)
-
-        currentNoteIndex += 1
-
-        // Schedule the next note to play after the current one finishes
-        let waitTime = noteDuration + TimeInterval(notePlayer.envelope.releaseDuration)
-        DispatchQueue.main.asyncAfter(deadline: .now() + waitTime) {
-            self.playNextNote(noteDuration: noteDuration)
-        }
-    }
-
 }
 
 
