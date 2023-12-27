@@ -8,29 +8,12 @@ class NotePlayer {
     init() {
         engine = AudioEngine()
         sampler = AppleSampler()
-
-        // Load the specific SFZ file
-        loadSFZFile(named: "TX LoTine81z.sfz")
-
         engine.output = sampler
 
         do {
             try engine.start()
         } catch {
             print("Audio Engine didn't start: \(error)")
-        }
-    }
-
-    private func loadSFZFile(named fileName: String) {
-        guard let filePath = Bundle.main.path(forResource: fileName, ofType: nil, inDirectory: "heimdall/sounds/sfz") else {
-            print("Failed to find \(fileName) in bundle.")
-            return
-        }
-
-        do {
-            try sampler.loadPath(filePath)
-        } catch {
-            print("Failed to load the SFZ file: \(error)")
         }
     }
 

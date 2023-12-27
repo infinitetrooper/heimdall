@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var cameraManager = CameraManager()
     @State private var isSoundPlaying = true
-    @State private var isPlaying = false
     private var notePlayer = NotePlayer()
     @State private var noteQueue: [Double] = []
     @State private var currentNoteIndex = 0
@@ -46,12 +45,6 @@ struct ContentView: View {
                         processAndPlayImage(image)
                     }
                 }
-            }
-            
-            if isPlaying {
-                Text("Playing...")
-            } else {
-                Text("Ready")
             }
         }
         
