@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47C742572B3C0FAD00EE5AD5 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C742562B3C0FAD00EE5AD5 /* CameraPreviewView.swift */; };
+		47C742592B3C144100EE5AD5 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C742582B3C144100EE5AD5 /* SoundManager.swift */; };
 		47DE6C1E2B3C03F600F7D61F /* heimdallApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE6C1D2B3C03F600F7D61F /* heimdallApp.swift */; };
 		47DE6C202B3C03F600F7D61F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE6C1F2B3C03F600F7D61F /* ContentView.swift */; };
 		47DE6C222B3C03F700F7D61F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47DE6C212B3C03F700F7D61F /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 		47DE6C302B3C03F800F7D61F /* heimdallTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE6C2F2B3C03F800F7D61F /* heimdallTests.swift */; };
 		47DE6C3A2B3C03F800F7D61F /* heimdallUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE6C392B3C03F800F7D61F /* heimdallUITests.swift */; };
 		47DE6C3C2B3C03F800F7D61F /* heimdallUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE6C3B2B3C03F800F7D61F /* heimdallUITestsLaunchTests.swift */; };
+		47DE6C492B3C071200F7D61F /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE6C482B3C071200F7D61F /* CameraManager.swift */; };
+		47DE6C4B2B3C077F00F7D61F /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DE6C4A2B3C077F00F7D61F /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		47C742562B3C0FAD00EE5AD5 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		47C742582B3C144100EE5AD5 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		47DE6C1A2B3C03F600F7D61F /* heimdall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = heimdall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47DE6C1D2B3C03F600F7D61F /* heimdallApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = heimdallApp.swift; sourceTree = "<group>"; };
 		47DE6C1F2B3C03F600F7D61F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +51,8 @@
 		47DE6C352B3C03F800F7D61F /* heimdallUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = heimdallUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47DE6C392B3C03F800F7D61F /* heimdallUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = heimdallUITests.swift; sourceTree = "<group>"; };
 		47DE6C3B2B3C03F800F7D61F /* heimdallUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = heimdallUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		47DE6C482B3C071200F7D61F /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		47DE6C4A2B3C077F00F7D61F /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +104,10 @@
 			isa = PBXGroup;
 			children = (
 				47DE6C1D2B3C03F600F7D61F /* heimdallApp.swift */,
+				47DE6C482B3C071200F7D61F /* CameraManager.swift */,
+				47C742582B3C144100EE5AD5 /* SoundManager.swift */,
+				47C742562B3C0FAD00EE5AD5 /* CameraPreviewView.swift */,
+				47DE6C4A2B3C077F00F7D61F /* CameraView.swift */,
 				47DE6C1F2B3C03F600F7D61F /* ContentView.swift */,
 				47DE6C212B3C03F700F7D61F /* Assets.xcassets */,
 				47DE6C232B3C03F700F7D61F /* heimdall.entitlements */,
@@ -260,7 +272,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				47DE6C202B3C03F600F7D61F /* ContentView.swift in Sources */,
+				47DE6C492B3C071200F7D61F /* CameraManager.swift in Sources */,
+				47C742572B3C0FAD00EE5AD5 /* CameraPreviewView.swift in Sources */,
 				47DE6C1E2B3C03F600F7D61F /* heimdallApp.swift in Sources */,
+				47DE6C4B2B3C077F00F7D61F /* CameraView.swift in Sources */,
+				47C742592B3C144100EE5AD5 /* SoundManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +440,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = heimdall/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Heimdall;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -434,10 +452,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.infinitetrooper.heimdall;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -462,6 +480,8 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = heimdall/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Heimdall;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -472,10 +492,10 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.infinitetrooper.heimdall;
 				PRODUCT_NAME = "$(TARGET_NAME)";

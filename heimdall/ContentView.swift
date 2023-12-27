@@ -8,16 +8,38 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var cameraManager = CameraManager()
+    @State private var isSoundPlaying = true
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Toggle(isOn: $isSoundPlaying) {
+                Text(isSoundPlaying ? "Stop Sound" : "Start Sound")
+            }
+            .padding()
+            .onChange(of: isSoundPlaying) { newValue in
+                if newValue {
+                    cameraManager.startSound()
+                } else {
+                    cameraManager.stopSound()
+                }
+            }
+            ZStack {
+                CameraPreviewView(cameraManager: cameraManager)
+                VStack {
+                    Spacer()
+                    Text("ISO: \(cameraManager.currentISO)")
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.black.opacity(0.7))
+                        .cornerRadius(10)
+                        .padding()
+                }
+            }
         }
-        .padding()
     }
 }
+
 
 #Preview {
     ContentView()
