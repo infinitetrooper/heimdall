@@ -16,29 +16,38 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            Toggle(isOn: $isSoundPlaying) {
-                Text(isSoundPlaying ? "Stop Sound" : "Start Sound")
-            }
-            .padding()
-            .onChange(of: isSoundPlaying) { newValue in
-                if newValue {
-                    cameraManager.startSound()
-                } else {
-                    cameraManager.stopSound()
-                }
-            }
             ZStack {
                 CameraPreviewView(cameraManager: cameraManager)
+
+                // ISO Display at the bottom
                 VStack {
                     Spacer()
-                    Text("ISO: \(cameraManager.currentISO)")
-                        .foregroundColor(.white)
+                    HStack {
+                        Text("ISO: \(Int(cameraManager.currentISO))")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.black.opacity(0.7))
+                            .cornerRadius(10)
+
+                        Spacer()
+
+                        // Toggle for Sound Playing
+                        Toggle(isOn: $isSoundPlaying) {
+                            Text(isSoundPlaying ? "Stop Sound" : "Start Sound")
+                        }
                         .padding()
-                        .background(Color.black.opacity(0.7))
-                        .cornerRadius(10)
-                        .padding()
+                        .onChange(of: isSoundPlaying) { newValue in
+                            if newValue {
+                                cameraManager.startSound()
+                            } else {
+                                cameraManager.stopSound()
+                            }
+                        }
+                    }
+                    .padding()
                 }
             }
+            Spacer() // Pushes everything above to the top
             Button("Capture and Play") {
                 cameraManager.captureImage { image in
                     if let image = image {
@@ -46,6 +55,12 @@ struct ContentView: View {
                     }
                 }
             }
+            .padding()
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .font(.headline)
+            .cornerRadius(10)
+            .padding(.bottom, 10)
         }
         
         .onAppear() {
