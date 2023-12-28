@@ -58,7 +58,8 @@ struct ContentView: View {
         let segmentedColors = getSegmentedColors(from: image, gridRows: 10, gridColumns: 10)
         let notes = segmentedColors.map(mapColorToNote)
 
-        notePlayer.playNotesSequence(notes, noteDuration: 0.25)
+        notePlayer.playNotesInRhythm(notes, baseNoteDuration: 0.2, gapDuration: 0.1)
+        //notePlayer.playNotesSequence(notes, noteDuration: 0.25)
     }
 }
 
